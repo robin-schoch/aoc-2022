@@ -1,7 +1,8 @@
 package day01
 
 import readInput
-import java.util.PriorityQueue
+import java.util.*
+import kotlin.math.max
 
 fun main() {
     fun part1(input: List<String>): Int {
@@ -10,8 +11,8 @@ fun main() {
         input.forEach {
             if (it.isNotEmpty()) {
                 localMax += it.toInt()
-                globalMax = Math.max(localMax, globalMax)
-            } else  {
+                globalMax = localMax.coerceAtLeast(globalMax)
+            } else {
                 localMax = 0
             }
         }
@@ -21,16 +22,10 @@ fun main() {
     fun part2(input: List<String>): Int {
         val topThree = PriorityQueue<Int>()
         var localMax = 0
-        input.forEach {
-            if (it.isNotEmpty()) {
-                localMax += it.toInt()
-            } else  {
-                topThree.offer(localMax)
-                localMax = 0
-            }
-            if (topThree.size > 3) {
-                topThree.poll()
-            }
+        input.forEachIndexed { index, it ->
+            if (it.isNotEmpty()) localMax += it.toInt()
+            if (it.isEmpty() || index == input.size - 1) topThree.offer(localMax).also { localMax = 0 }
+            if (topThree.size > 3) topThree.poll()
         }
         return topThree.sum()
 
@@ -39,6 +34,9 @@ fun main() {
     // test if implementation meets criteria from the description, like:
     val testInput = readInput("Day01", true)
     check(part1(testInput) == 24000)
+    println(part2(testInput))
+    check(part2(testInput) == 45000)
+
 
     val input = readInput("Day01")
     println(part1(input))
