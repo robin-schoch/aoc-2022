@@ -5,9 +5,11 @@ import java.security.MessageDigest
 /**
  * Reads lines from the given input txt file.
  */
-fun readInput(name: String) = File("src/${name.lowercase()}", "$name.txt")
-    .readLines()
-
+fun readInput(name: String, isTest: Boolean = false): List<String> {
+    val childPath = "${if (isTest) name + "_test" else name }.txt"
+    return File("src/${name.lowercase()}", childPath)
+        .readLines()
+}
 /**
  * Converts string to md5 hash.
  */

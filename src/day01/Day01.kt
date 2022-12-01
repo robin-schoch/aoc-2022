@@ -19,7 +19,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        val topThree = PriorityQueue<Int>(Comparator.reverseOrder())
+        val topThree = PriorityQueue<Int>()
         var localMax = 0
         input.forEach {
             if (it.isNotEmpty()) {
@@ -28,14 +28,17 @@ fun main() {
                 topThree.offer(localMax)
                 localMax = 0
             }
+            if (topThree.size > 3) {
+                topThree.poll()
+            }
         }
-        return topThree.poll() + topThree.poll() + topThree.poll()
+        return topThree.sum()
 
     }
 
     // test if implementation meets criteria from the description, like:
-    //val testInput = readInput("Day01_test")
-    //check(part1(testInput) == 1)
+    val testInput = readInput("Day01", true)
+    check(part1(testInput) == 24000)
 
     val input = readInput("Day01")
     println(part1(input))
