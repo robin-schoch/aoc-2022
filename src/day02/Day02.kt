@@ -10,7 +10,7 @@ sealed class Shape {
     abstract fun wins(): Shape
     private fun draws() = this
 
-    fun plays(opponent: Shape) = when (this) {
+    infix fun plays(opponent: Shape) = when (this) {
         opponent.draws() -> DRAW
         opponent.losses() -> WON
         opponent.wins() -> LOST
@@ -69,7 +69,7 @@ fun main() {
     fun part1(input: List<String>) = input.sumOf {
         val evilShape = Shape.findShape(it[0])
         val myShape = Shape.findShape(it[2])
-        myShape.points + myShape.plays(evilShape)
+        (myShape plays evilShape) + myShape.points
     }
 
     fun part2(input: List<String>) = input.sumOf {
