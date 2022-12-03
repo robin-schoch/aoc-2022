@@ -15,7 +15,7 @@ fun calculatePriority(item: Char) = when {
 
 fun findBadges(ruckack: List<String>) = ruckack
     .map { it.toSet() }
-    .reduce { interset, sack -> interset.intersect(sack) }
+    .reduce { items, sack -> items.intersect(sack) }
 
 fun main() {
     fun part1(input: List<String>) = input
