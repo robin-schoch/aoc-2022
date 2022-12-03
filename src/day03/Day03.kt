@@ -24,7 +24,6 @@ fun main() {
         .map { set -> set.first() }
         .sumOf { calculatePriority(it) }
 
-
     fun part2(input: List<String>) = input
         .windowed(3, 3)
         .map { findBadges(it) }
