@@ -2,7 +2,6 @@ package day01
 
 import readInput
 import java.util.*
-import kotlin.math.max
 
 fun main() {
     fun part1(input: List<String>): Int {
@@ -11,7 +10,9 @@ fun main() {
         input.forEach {
             if (it.isNotEmpty()) {
                 localMax += it.toInt()
+
                 globalMax = localMax.coerceAtLeast(globalMax)
+
             } else {
                 localMax = 0
             }
@@ -32,10 +33,10 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01", true)
-    check(part1(testInput) == 24000)
-    println(part2(testInput))
-    check(part2(testInput) == 45000)
+    val testInput2 = readInput("Day01", true)
+    check(part1(testInput2) == 24000)
+    println(part2(testInput2))
+    check(part2(testInput2) == 45000)
 
 
     val input = readInput("Day01")
