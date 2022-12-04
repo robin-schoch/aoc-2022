@@ -11,9 +11,9 @@ fun splittIntoCompartments(content: String) = with(content.length / 2) {
     content.take(this).toSet() to content.takeLast(this).toSet()
 }
 
-fun calculatePriority(item: Char) = when {
-    item.isLowerCase() -> item - 'a' + 1
-    item.isUpperCase() -> item - 'A' + 27
+fun Char.calculatePriority() = when {
+    isLowerCase() -> this - 'a' + 1
+    isUpperCase() -> this - 'A' + 27
     else -> throw IllegalStateException("item must be letter")
 }
 
@@ -28,10 +28,10 @@ object Day03 : AdventOfCodeSolution<Int, Int> {
     override fun part1(input: List<String>) = input
         .map { splittIntoCompartments(it) }
         .flatMap { (sack1, sack2) -> sack1 intersect sack2 }
-        .sumOf { calculatePriority(it) }
+        .sumOf { it.calculatePriority() }
 
     override fun part2(input: List<String>) = input
         .windowed(3, 3)
         .flatMap { findBadges(it) }
-        .sumOf { calculatePriority(it) }
+        .sumOf { it.calculatePriority() }
 }
