@@ -3,7 +3,7 @@ import day02.Day02
 import day03.Day03
 import day04.Day04
 import kotlin.time.ExperimentalTime
-import kotlin.time.measureTime
+import kotlin.time.measureTimedValue
 
 fun main() {
     Day01.run()
@@ -32,22 +32,20 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
             part1(testInput).let { result ->
                 check(result == it) { "error: $result" }
             }
-            val result: S1
-            val elapsed = measureTime {
-                result = part1(input)
+            val result1 = measureTimedValue {
+                part1(input)
             }
-            println("Solution: $result used $elapsed")
+            println("Solution: ${result1.value} used ${result1.duration}")
         }
         testSolution2?.let {
             println("-------------- part 2 --------------")
             part2(testInput).let { result ->
                 check(result == it) { "error: $result" }
             }
-            val result: S2
-            val elapsed = measureTime {
-                result = part2(input)
+            val result2 = measureTimedValue {
+                part2(input)
             }
-            println("Solution: $result used $elapsed")
+            println("Solution: ${result2.value} used ${result2.duration}")
         }
         println("====================================")
         println()
