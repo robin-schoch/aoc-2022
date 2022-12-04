@@ -4,13 +4,13 @@ import readInput
 import java.util.*
 
 fun main() {
+
     fun part1(input: List<String>): Int {
         var globalMax = 0
         var localMax = 0
         input.forEach {
             if (it.isNotEmpty()) {
                 localMax += it.toInt()
-
                 globalMax = localMax.coerceAtLeast(globalMax)
 
             } else {
@@ -29,15 +29,12 @@ fun main() {
             if (topThree.size > 3) topThree.poll()
         }
         return topThree.sum()
-
     }
 
-    // test if implementation meets criteria from the description, like:
     val testInput2 = readInput("Day01", true)
     check(part1(testInput2) == 24000)
     println(part2(testInput2))
     check(part2(testInput2) == 45000)
-
 
     val input = readInput("Day01")
     println(part1(input))

@@ -42,7 +42,6 @@ sealed class Shape {
             'Z' -> WON
             else -> throw IllegalStateException("unsupported game outcome")
         }
-
     }
 }
 
@@ -63,7 +62,6 @@ object Paper : Shape() {
     override fun losses() = Scissors
     override fun wins() = Rock
 }
-
 
 fun main() {
     fun part1(input: List<String>) = input.sumOf {
