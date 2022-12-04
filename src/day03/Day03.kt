@@ -7,7 +7,6 @@ fun main() {
 }
 
 
-
 fun splittIntoCompartments(content: String) = with(content.length / 2) {
     content.take(this).toSet() to content.takeLast(this).toSet()
 }
@@ -18,9 +17,9 @@ fun calculatePriority(item: Char) = when {
     else -> throw IllegalStateException("item must be letter")
 }
 
-fun findBadges(ruckack: List<String>) = ruckack
+fun findBadges(rucksack: List<String>) = rucksack
     .map { it.toSet() }
-    .reduce { items, sack -> items.intersect(sack) }
+    .reduce { items, sack -> items intersect sack }
 
 object Day03 : AdventOfCodeSolution<Int, Int> {
     override val testSolution1 = 157
@@ -28,13 +27,11 @@ object Day03 : AdventOfCodeSolution<Int, Int> {
 
     override fun part1(input: List<String>) = input
         .map { splittIntoCompartments(it) }
-        .map { it.first.intersect(it.second) }
-        .map { set -> set.first() }
+        .flatMap { (sack1, sack2) -> sack1 intersect sack2 }
         .sumOf { calculatePriority(it) }
 
     override fun part2(input: List<String>) = input
         .windowed(3, 3)
-        .map { findBadges(it) }
-        .map { set -> set.first() }
+        .flatMap { findBadges(it) }
         .sumOf { calculatePriority(it) }
 }
