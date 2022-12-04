@@ -2,6 +2,8 @@ import day01.Day01
 import day02.Day02
 import day03.Day03
 import day04.Day04
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
 fun main() {
     Day01.run()
@@ -10,9 +12,7 @@ fun main() {
     Day04.run()
 }
 
-annotation class AdventBenchmark
-
-@AdventBenchmark
+@OptIn(ExperimentalTime::class)
 interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
     val testSolution1: S1? get() = null
     val testSolution2: S2? get() = null
@@ -32,15 +32,22 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
             part1(testInput).let { result ->
                 check(result == it) { "error: $result" }
             }
-
-            println("solution: ${part2(input)}")
+            val result: S1
+            val elapsed = measureTime {
+                result = part1(input)
+            }
+            println("solution: $result used $elapsed")
         }
         testSolution2?.let {
             println("-------------- part 2 --------------")
             part2(testInput).let { result ->
                 check(result == it) { "error: $result" }
             }
-            println("solution: ${part2(input)}")
+            val result: S2
+            val elapsed = measureTime {
+                result = part2(input)
+            }
+            println("solution: $result used $elapsed")
         }
         println()
     }
