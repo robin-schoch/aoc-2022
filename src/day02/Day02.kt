@@ -1,6 +1,10 @@
 package day02
 
-import readInput
+import AdventOfCodeSolution
+
+fun main() {
+  Day02.run()
+}
 
 sealed class Shape {
 
@@ -63,25 +67,20 @@ object Paper : Shape() {
     override fun wins() = Rock
 }
 
-fun main() {
-    fun part1(input: List<String>) = input.sumOf {
+object Day02 : AdventOfCodeSolution<Int, Int> {
+    override val testSolution1 = 15
+    override val testSolution2 = 12
+
+    override fun part1(input: List<String>) = input.sumOf {
         val evilShape = Shape.findShape(it[0])
         val myShape = Shape.findShape(it[2])
         (myShape plays evilShape) + myShape.points
     }
 
-    fun part2(input: List<String>) = input.sumOf {
+    override fun part2(input: List<String>) = input.sumOf {
         val evilShape = Shape.findShape(it[0])
         val result = Shape.findResult(it[2])
         val myShape = evilShape.shapeFromResult(result)
         myShape.points + result
     }
-
-    val testInput = readInput("Day02", true)
-    check(part1(testInput) == 15)
-    check(part2(testInput) == 12)
-
-    val input = readInput("Day02")
-    println(part1(input))
-    println(part2(input))
 }

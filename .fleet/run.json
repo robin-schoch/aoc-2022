@@ -12,6 +12,20 @@
             }
         },
         {
+            "name": "Every Day",
+            "type": "jps-run",
+            "dependsOn": [
+                "Build aoc-2022"
+            ],
+            "mainClass": "AdventOfCodeSolutionKt",
+            "module": "aoc-2022.main",
+            "options": [
+                "-Dfile.encoding=UTF-8",
+                "-Dsun.stdout.encoding=UTF-8",
+                "-Dsun.stderr.encoding=UTF-8"
+            ]
+        },
+        {
             "name": "Day 1",
             "type": "jps-run",
             "dependsOn": [

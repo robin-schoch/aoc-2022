@@ -1,6 +1,11 @@
 package day03
 
-import readInput
+import AdventOfCodeSolution
+
+fun main() {
+    Day03.run()
+}
+
 
 
 fun splittIntoCompartments(content: String) = with(content.length / 2) {
@@ -17,24 +22,19 @@ fun findBadges(ruckack: List<String>) = ruckack
     .map { it.toSet() }
     .reduce { items, sack -> items.intersect(sack) }
 
-fun main() {
-    fun part1(input: List<String>) = input
+object Day03 : AdventOfCodeSolution<Int, Int> {
+    override val testSolution1 = 157
+    override val testSolution2 = 70
+
+    override fun part1(input: List<String>) = input
         .map { splittIntoCompartments(it) }
         .map { it.first.intersect(it.second) }
         .map { set -> set.first() }
         .sumOf { calculatePriority(it) }
 
-    fun part2(input: List<String>) = input
+    override fun part2(input: List<String>) = input
         .windowed(3, 3)
         .map { findBadges(it) }
         .map { set -> set.first() }
         .sumOf { calculatePriority(it) }
-
-    val testInput = readInput("Day03", true)
-    check(part1(testInput) == 157) { "wrong answser is ${part1(testInput)}" }
-    check(part2(testInput) == 70)
-
-    val input = readInput("Day03")
-    println(part1(input))
-    println(part2(input))
 }

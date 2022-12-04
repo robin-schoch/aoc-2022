@@ -2,6 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.22"
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.4"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.7.21"
 }
 
 repositories {
@@ -22,8 +24,18 @@ tasks {
 }
 
 
-tasks.withType<KotlinCompile> {
+tasks.withType < KotlinCompile > {
     kotlinOptions.jvmTarget = "1.8"
     kotlinOptions.languageVersion = "1.8"
     kotlinOptions.freeCompilerArgs = listOf("-Xcontext-receivers")
+}
+
+allOpen {
+    annotation("Benchmark")
+}
+benchmark {
+    targets {
+        register("main")
+    }
+
 }
