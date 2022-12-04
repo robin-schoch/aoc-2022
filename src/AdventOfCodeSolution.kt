@@ -47,8 +47,6 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
             }
             println("Solution: ${result2.value} used ${result2.duration}")
         }
-        println("====================================")
-        println()
-        println()
+        println("====================================\n\n")
     }
 }
