@@ -22,7 +22,7 @@ fun main() {
 
     val testInput = readInput("Day04", true)
     check(part1(testInput) == 2)
-    check(part2(testInput) == 4) { part2(testInput) }
+    check(part2(testInput) == 4)
 
     val input = readInput("Day04")
     println(part1(input))
