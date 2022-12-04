@@ -26,7 +26,7 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
     fun run() {
         val testInput = readInput("Day$paddedDay", true)
         val input = readInput("Day$paddedDay")
-        println("============ $paddedDay ============")
+        println("============== Day $paddedDay ==============")
         testSolution1?.let {
             println("-------------- part 1 --------------")
             part1(testInput).let { result ->
@@ -36,7 +36,7 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
             val elapsed = measureTime {
                 result = part1(input)
             }
-            println("solution: $result used $elapsed")
+            println("Solution: $result used $elapsed")
         }
         testSolution2?.let {
             println("-------------- part 2 --------------")
@@ -47,8 +47,10 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
             val elapsed = measureTime {
                 result = part2(input)
             }
-            println("solution: $result used $elapsed")
+            println("Solution: $result used $elapsed")
         }
+        println("====================================")
+        println()
         println()
     }
 }
