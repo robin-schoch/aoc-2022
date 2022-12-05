@@ -3,6 +3,9 @@ import day02.Day02
 import day03.Day03
 import day04.Day04
 import day05.Day05
+import java.io.File
+import java.math.BigInteger
+import java.security.MessageDigest
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
@@ -24,6 +27,19 @@ interface AdventOfCodeSolution<S1 : Any, S2 : Any> {
     fun part1(input: List<String>): S1
 
     fun part2(input: List<String>): S2
+
+    private fun readInput(name: String, isTest: Boolean = false): List<String> {
+        val childPath = "${if (isTest) name + "_test" else name}.txt"
+        return File("src/${name.lowercase()}", childPath)
+            .readLines()
+    }
+
+    /**
+     * Converts string to md5 hash.
+     */
+    fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray()))
+        .toString(16)
+        .padStart(32, '0')
 
     fun run() {
         val testInput = readInput("Day$paddedDay", true)
