@@ -14,8 +14,7 @@ object Day06 : AdventOfCodeSolution<Int, Int> {
     @OptIn(ExperimentalStdlibApi::class)
     private fun findMarker(from: Int, input: String, markerSize: Int = 4): Int {
         val duplicates = input
-            .substring(from..<(from + markerSize))
-            .asSequence()
+            .subSequence(from..<(from + markerSize))
             .mapIndexed { index, c -> index to c }
             .groupBy { it.second }
             .map { it.value.map { p -> p.first } }
