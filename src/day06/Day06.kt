@@ -11,16 +11,13 @@ object Day06 : AdventOfCodeSolution<Int, Int> {
     override val testSolution1 = 7
     override val testSolution2 = 19
 
-    @OptIn(ExperimentalStdlibApi::class)
-    private fun findMarker(from: Int, input: String, markerSize: Int = 4): Int {
+    private tailrec fun findMarker(from: Int, input: String, markerSize: Int = 4): Int {
         val duplicates = input
-            .subSequence(from..<(from + markerSize))
-            .mapIndexed { index, c -> index to c }
-            .groupBy { it.second }
-            .map { it.value.map { p -> p.first } }
-            .filter { it.size > 1 }
-            .map { it.sorted().reversed() }
-            .map { it[1] + 1 }
+            .subSequence(from, (from + markerSize))
+            .withIndex()
+            .groupBy { it.value }
+            .filter { it.value.size > 1 }
+            .map { it.value.sortedByDescending { indexedChar -> indexedChar.index }[1].index + 1}
         return when (duplicates.size) {
             0 -> from + markerSize
             else -> findMarker(duplicates.max() + from, input, markerSize)
