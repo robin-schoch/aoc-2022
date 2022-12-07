@@ -30,7 +30,7 @@ data class Directory(val parent: Directory?, val childDirectories: MutableMap<St
     }
 
     companion object {
-        fun mdkir(parent: Directory): Directory = Directory(parent, mutableMapOf(), mutableListOf())
+        fun mkdir(parent: Directory): Directory = Directory(parent, mutableMapOf(), mutableListOf())
         fun root() = Directory(null, mutableMapOf(), mutableListOf())
     }
 }
@@ -62,7 +62,7 @@ object Day07 : AdventOfCodeSolution<Long, Long> {
         terminalOuput.takeWhile { it[0] != '$' }.forEach {
             with(it.split(" ")) {
                 when (this[0]) {
-                    "dir" -> childDirectories[this[1]] = Directory.mdkir(this@readlines)
+                    "dir" -> childDirectories[this[1]] = Directory.mkdir(this@readlines)
                     else -> files.add(File(this[1], this[0].toLong()))
                 }
             }
