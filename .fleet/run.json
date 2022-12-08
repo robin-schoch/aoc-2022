@@ -122,6 +122,20 @@
                 "-Dsun.stdout.encoding=UTF-8",
                 "-Dsun.stderr.encoding=UTF-8"
             ]
+        },
+        {
+            "name": "Day 8",
+            "type": "jps-run",
+            "dependsOn": [
+                "Build aoc-2022"
+            ],
+            "mainClass": "day08.Day08Kt",
+            "module": "aoc-2022.main",
+            "options": [
+                "-Dfile.encoding=UTF-8",
+                "-Dsun.stdout.encoding=UTF-8",
+                "-Dsun.stderr.encoding=UTF-8"
+            ]
         }
     ]
 }
