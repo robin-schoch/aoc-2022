@@ -19,15 +19,15 @@ class Forest(val trees: Array<IntArray>) {
 
     private fun searchForVisibleTrees(iRange: IntProgression, jRange: IntProgression, dir: (x: Int, y: Int) -> Pair<Int, Int>) =
         iRange.fold(setOf<Pair<Int, Int>>()) { set, i ->
-        jRange.fold(-1 to setOf<Pair<Int, Int>>()) { acc, j ->
-            dir(i, j).let {
-                when (trees[it.first][it.second] > acc.first) {
-                    true -> trees[it.first][it.second] to (acc.second + it)
-                    false -> acc
+            jRange.fold(-1 to setOf<Pair<Int, Int>>()) { acc, j ->
+                dir(i, j).let {
+                    when (trees[it.first][it.second] > acc.first) {
+                        true -> trees[it.first][it.second] to (acc.second + it)
+                        false -> acc
+                    }
                 }
-            }
-        }.second + set
-    }
+            }.second + set
+        }
 
 
     fun calculateScenicScore() = trees.flatMapIndexed { index, treeRow ->
