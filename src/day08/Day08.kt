@@ -6,9 +6,7 @@ fun main() {
     Day08.run()
 }
 
-
-@OptIn(ExperimentalStdlibApi::class)
-class Forest(val trees: Array<IntArray>) {
+class Forest(private val trees: Array<IntArray>) {
 
     fun searchFromLeft() = searchForVisibleTrees(trees.indices, trees[0].indices) { x, y -> x to y }
 
@@ -67,11 +65,9 @@ object Day08 : AdventOfCodeSolution<Int, Int> {
 
     override val testSolution1 = 21
     override val testSolution2 = 8
-    override fun part1(input: List<String>) =
-        (Forest.seed(input).searchFromLeft() +
-            Forest.seed(input).searchFromRight() +
-            Forest.seed(input).searchFromTop() +
-            Forest.seed(input).searchFromBottom()).size
+    override fun part1(input: List<String>) = with(Forest.seed(input)) {
+        searchFromLeft() + searchFromRight() + searchFromTop() + searchFromBottom()
+    }.size
 
     override fun part2(input: List<String>) = Forest.seed(input).calculateScenicScore()
 }
