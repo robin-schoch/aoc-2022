@@ -17,7 +17,8 @@ class Forest(val trees: Array<IntArray>) {
     fun searchFromTop() = searchForVisibleTrees(trees[0].lastIndex downTo 0, trees.indices) { x, y -> y to x }
     fun searchFromBottom() = searchForVisibleTrees(trees[0].indices, trees.lastIndex downTo 0) { x, y -> y to x }
 
-    private fun searchForVisibleTrees(iRange: IntProgression, jRange: IntProgression, dir: (x: Int, y: Int) -> Pair<Int, Int>) = iRange.flatMap { i ->
+    private fun searchForVisibleTrees(iRange: IntProgression, jRange: IntProgression, dir: (x: Int, y: Int) -> Pair<Int, Int>) =
+        iRange.fold(setOf<Pair<Int, Int>>()) { set, i ->
         jRange.fold(-1 to setOf<Pair<Int, Int>>()) { acc, j ->
             dir(i, j).let {
                 when (trees[it.first][it.second] > acc.first) {
@@ -25,8 +26,8 @@ class Forest(val trees: Array<IntArray>) {
                     false -> acc
                 }
             }
-        }.second
-    }.toSet()
+        }.second + set
+    }
 
 
     fun calculateScenicScore() = trees.flatMapIndexed { index, treeRow ->
