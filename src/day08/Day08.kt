@@ -41,7 +41,7 @@ class Forest(private val trees: Array<IntArray>) {
             .takeWhile(bounded)
             .map { get(it) }
             .zipWithNext()
-            .takeWhile { it.second < trees[coordinate.first][coordinate.second] }
+            .takeWhile { it.second < get(coordinate) }
             .count() + 1).coerceAtMost(bounds)
     }
 
