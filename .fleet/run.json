@@ -136,6 +136,34 @@
                 "-Dsun.stdout.encoding=UTF-8",
                 "-Dsun.stderr.encoding=UTF-8"
             ]
+        },
+        {
+            "name": "Day 9",
+            "type": "jps-run",
+            "dependsOn": [
+                "Build aoc-2022"
+            ],
+            "mainClass": "day09.Day09Kt",
+            "module": "aoc-2022.main",
+            "options": [
+                "-Dfile.encoding=UTF-8",
+                "-Dsun.stdout.encoding=UTF-8",
+                "-Dsun.stderr.encoding=UTF-8"
+            ]
+        },
+        {
+            "name": "Day 10",
+            "type": "jps-run",
+            "dependsOn": [
+                "Build aoc-2022"
+            ],
+            "mainClass": "day10.Day10Kt",
+            "module": "aoc-2022.main",
+            "options": [
+                "-Dfile.encoding=UTF-8",
+                "-Dsun.stdout.encoding=UTF-8",
+                "-Dsun.stderr.encoding=UTF-8"
+            ]
         }
     ]
 }
