@@ -8,6 +8,7 @@ import day07.Day07
 import day08.Day08
 import day09.Day09
 import day10.Day10
+import day11.Day11
 import java.io.File
 import java.math.BigInteger
 import java.security.MessageDigest
@@ -25,6 +26,7 @@ fun main() {
     Day08.run()
     Day09.run()
     Day10.run()
+    Day11.run()
 }
 
 @OptIn(ExperimentalTime::class)
